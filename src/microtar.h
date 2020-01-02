@@ -77,6 +77,12 @@ int mtar_find(mtar_t *tar, const char *name, mtar_header_t *h);
 int mtar_read_header(mtar_t *tar, mtar_header_t *h);
 int mtar_read_data(mtar_t *tar, void *ptr, unsigned size);
 
+// _stream functions do not use seek at all
+int mtar_stream_read_header(mtar_t *tar, mtar_header_t *h);
+int mtar_stream_read_data(mtar_t *tar, mtar_header_t *h, void *ptr, unsigned size);
+// give the previously read header.size as file_size
+int mtar_stream_next(mtar_t *tar, unsigned file_size);
+
 int mtar_write_header(mtar_t *tar, const mtar_header_t *h);
 int mtar_write_file_header(mtar_t *tar, const char *name, unsigned size);
 int mtar_write_dir_header(mtar_t *tar, const char *name);
