@@ -97,8 +97,7 @@ static int raw_to_header(mtar_header_t *h, const mtar_raw_header_t *rh) {
 
   /* Build and compare checksum */
   chksum1 = checksum(rh);
-  sscanf(rh->checksum, "%o", &chksum2);
-  if (chksum1 != chksum2) {
+  if (sscanf(rh->checksum, "%o", &chksum2) != 1 || chksum1 != chksum2) {
     return MTAR_EBADCHKSUM;
   }
 
